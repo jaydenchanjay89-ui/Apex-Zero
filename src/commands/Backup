@@ -6,9 +6,8 @@ client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
 
     if (interaction.commandName === 'raid') {
-        // 1. 建立 Embed (即係 image.png 入面個主框)
         const raidEmbed = new EmbedBuilder()
-            .setColor('#FF3E3E') // 側邊嘅紅色邊框
+            .setColor('#FF3E3E') 
             .setTitle('🚨 Live Teamers Alert')
             .setDescription(`${interaction.user} 需要即時支援！`)
             .addFields(
@@ -17,23 +16,20 @@ client.on('interactionCreate', async interaction => {
                 { name: 'Region / Server', value: '`Singapore`', inline: true },
                 { name: 'Reason', value: 'i saw 2 guys doing team blackflash' }
             )
-            .setThumbnail('https://roblox-avatar-url.com/image.png') // 玩家頭像
+            .setThumbnail('https://roblox-avatar-url.com/image.png') 
             .setFooter({ text: `Requested by ${interaction.user.tag}` });
-
-        // 2. 建立互動式掣 (Help 同 End 掣)
         const buttons = new ActionRowBuilder()
             .addComponents(
                 new ButtonBuilder()
                     .setCustomId('join_raid')
                     .setLabel('Help')
-                    .setStyle(ButtonStyle.Success), // 綠色掣
+                    .setStyle(ButtonStyle.Success), 
                 new ButtonBuilder()
                     .setCustomId('end_raid')
                     .setLabel('End')
-                    .setStyle(ButtonStyle.Secondary) // 灰色掣
+                    .setStyle(ButtonStyle.Secondary) 
             );
 
-        // 傳送訊息
         await interaction.reply({ embeds: [raidEmbed], components: [buttons] });
     }
 });
